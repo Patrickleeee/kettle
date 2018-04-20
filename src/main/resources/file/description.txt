@@ -1,0 +1,2 @@
+安装本地jar脚本命令：
+mvn install:install-file -Dfile=ngdbc.jar -DgroupId=org.sap.jdbc -DartifactId=ngdbc -Dversion=1.0 -Dpackaging=jar
