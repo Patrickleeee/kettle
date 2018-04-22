@@ -1,0 +1,3 @@
+kettle:
+  task1: D:/kettle/XD/hana.kjb
+  task2: D:/kettle/XD/hana-sale.ktr
