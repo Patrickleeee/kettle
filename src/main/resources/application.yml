@@ -1,3 +1,34 @@
+#kettle:
+#  taskJobOne: D:/kettle/XD/test/hana.kjb
+#  taskJobTwo: D:/kettle/XD/test/merchant_sale.kjb
+#  taskTransOne: D:/kettle/XD/test/hana-sale.ktr
+#  taskTransTwo: D:/kettle/XD/test/hana-other.ktr
+
+#kettle:
+#  taskJobOne: /opt/webapps/data-sync/hana.kjb
+#  taskJobTwo: /opt/webapps/data-sync/merchant_sale.kjb
+#  taskTransTwo: /opt/webapps/data-sync/hana-other.ktr
+
+
+spring:
+  profiles:
+    active: prod
+
+#DEV
+---
+spring:
+  profiles: dev
 kettle:
-  task1: D:/kettle/XD/hana.kjb
-  task2: D:/kettle/XD/hana-sale.ktr
+  taskJobOne: D:/kettle/XD/test/hana.kjb
+  taskJobTwo: D:/kettle/XD/test/merchant_sale.kjb
+  taskTransTwo: D:/kettle/XD/test/hana-other.ktr
+
+#PROD
+---
+spring:
+  profiles: prod
+kettle:
+  taskJobOne: /opt/webapps/data-sync/hana.kjb
+  taskJobTwo: /opt/webapps/data-sync/merchant_sale.kjb
+  taskTransTwo: /opt/webapps/data-sync/hana-other.ktr
+

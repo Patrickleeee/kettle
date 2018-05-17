@@ -20,34 +20,53 @@ public class KettleTaskJob {
 
     private static Logger LOGGER = LoggerFactory.getLogger(KettleTaskJob.class.getName());
 
-    @Value("${kettle.task1}")
-    private String task1;
+    @Value("${kettle.taskJobOne}")
+    private String taskJobOne;
 
-    @Value("${kettle.task2}")
-    private String task2;
+    @Value("${kettle.taskJobTwo}")
+    private String taskJobTwo;
+
+    @Value("${kettle.taskTransTwo}")
+    private String taskTransTwo;
 
     /**
-     * 每天凌晨1点进行数据同步更新
+     * 周六凌晨1点进行merchant_full数据同步更新
+     *
      * @throws Exception
      */
-    @Scheduled(cron = "0 0 1 * * ?")
-    public void runTask1() throws Exception {
-        LOGGER.info("*****kettle定时任务运行开始******");
-        String transFileName = this.task1;
+    @Scheduled(cron = "0 0 18 ? * SAT")
+    public void runTaskJobOne() throws Exception {
+        LOGGER.info("kettle定时任务[{}]运行开始", this.taskJobOne);
+        String transFileName = this.taskJobOne;
         KettleUtil.callNativeJob(transFileName);
-        LOGGER.info("*****kettle定时任务运行结束******");
+        LOGGER.info("kettle定时任务[{}]运行结束", this.taskJobOne);
     }
 
     /**
-     * 每周六凌晨1点进行商户每年月数据同步更新
+     * 周六凌晨1点进行merchant_sale数据同步更新
+     *
      * @throws Exception
      */
-    @Scheduled(cron = "0 0 1 ? * SAT")
-    public void runTask2() throws Exception {
-        LOGGER.info("*****kettle定时任务运行开始******");
-        String transFileName = this.task2;
-        LOGGER.info("task2:{}", this.task2);
+    @Scheduled(cron = "0 0 18 ? * SAT")
+    public void runTaskJobTwo() throws Exception {
+        LOGGER.info("kettle定时任务[{}]运行开始", this.taskJobTwo);
+        String transFileName = this.taskJobTwo;
+        KettleUtil.callNativeJob(transFileName);
+        LOGGER.info("kettle定时任务[{}]运行结束", this.taskJobTwo);
+    }
+
+    /**
+     * 每周六凌晨1点进行Hana中除merchant_full外的其他表同步
+     *
+     * @throws Exception
+     */
+    @Scheduled(cron = "0 0 18 ? * SAT")
+//    @Scheduled(cron = "0 00 10 * * ?")
+    public void runTaskTransTwo() throws Exception {
+        LOGGER.info("kettle定时任务[{}]运行开始", this.taskTransTwo);
+        String transFileName = this.taskTransTwo;
+        LOGGER.info("task:{}", this.taskTransTwo);
         KettleUtil.callNativeTrans(transFileName);
-        LOGGER.info("*****kettle定时任务运行结束******");
+        LOGGER.info("kettle定时任务[{}]运行结束", this.taskTransTwo);
     }
 }

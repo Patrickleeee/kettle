@@ -24,6 +24,11 @@
 			<id>pentaho-releases</id>
 			<url>http://nexus.pentaho.org/content/groups/omni</url>
 		</repository>
+
+		<!--<repository>-->
+			<!--<id>thirdparty</id>-->
+			<!--<url>http://106.14.1.71:32805/nexus/content/repositories/thirdparty</url>-->
+		<!--</repository>-->
 	</repositories>
 
 	<properties>
@@ -81,6 +86,25 @@
 			<groupId>org.sap.jdbc</groupId>
 			<artifactId>ngdbc</artifactId>
 			<version>1.0</version>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>com.falcon</groupId>-->
+			<!--<artifactId>jmate</artifactId>-->
+			<!--<version>1.0</version>-->
+		<!--</dependency>-->
+
+		<!--log-->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
