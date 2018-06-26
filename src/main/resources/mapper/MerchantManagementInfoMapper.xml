@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kettle.mapper.MerchantManagementInfoMapper">
+
+    <select id="selectOne" resultType="MerchantManagementInfo">
+        SELECT
+            a.MERCHANTSCODE AS merchantsCode,
+            a.MERCHANTSNAME AS merchantName,
+            a.CONTRACTAREA AS contractArea,
+            a.AVERAGERENTALPRICE AS averageRentalPrice,
+            a.AVGPAYRENT6M AS avgPayRent6m,
+            a.BRAND_NAME AS brandName,
+            a.MALLNAME AS mallName,
+            a.MALLSALESAMOUNT30D AS recentSaleAmount,
+            a.SALESAMOUNT30D AS recentSaleStatement,
+            a.OPERATEMONTHS AS operateMonths,
+            a.TOTALCOMPLAINT12M AS totalComplaint12m,
+            a.TOTALCOMPLAINT12MHIGH AS totalComplaint12mHigh,
+            a.TOTALCOMPLAINT12MMIDDLE AS totalComplaint12mMiddle,
+            a.TOTALCOMPLAINT12MLOW AS totalComplaint12mLow
+        FROM merchant_full a
+        WHERE MERCHANTSCODE = #{merchantsCode}
+        LIMIT 1
+    </select>
+</mapper>

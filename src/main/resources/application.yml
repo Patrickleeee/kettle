@@ -1,23 +1,28 @@
-#kettle:
-#  taskJobOne: D:/kettle/XD/test/hana.kjb
-#  taskJobTwo: D:/kettle/XD/test/merchant_sale.kjb
-#  taskTransOne: D:/kettle/XD/test/hana-sale.ktr
-#  taskTransTwo: D:/kettle/XD/test/hana-other.ktr
-
-#kettle:
-#  taskJobOne: /opt/webapps/data-sync/hana.kjb
-#  taskJobTwo: /opt/webapps/data-sync/merchant_sale.kjb
-#  taskTransTwo: /opt/webapps/data-sync/hana-other.ktr
+# mybatis配置
+mybatis:
+  # 配置映射类所在包名
+  type-aliases-package: com.kettle.bean
+  # 配置mapper xml文件所在路径，这里是一个数组
+  mapper-locations:
+    - mapper/MerchantManagementInfoMapper.xml
 
 
 spring:
   profiles:
     active: prod
+server:
+  port: 8008
 
 #DEV
 ---
 spring:
   profiles: dev
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://172.16.102.15:3306/merchant_integration?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: data_read
+    password: 7U9xjVHa
+    driver-class-name: com.mysql.jdbc.Driver
 kettle:
   taskJobOne: D:/kettle/XD/test/hana.kjb
   taskJobTwo: D:/kettle/XD/test/merchant_sale.kjb
@@ -27,6 +32,12 @@ kettle:
 ---
 spring:
   profiles: prod
+  # 数据库配置(内网)
+  datasource:
+    url: jdbc:mysql://172.16.102.15:3306/merchant_integration?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: data_read
+    password: 7U9xjVHa
+    driver-class-name: com.mysql.jdbc.Driver
 kettle:
   taskJobOne: /opt/webapps/data-sync/hana.kjb
   taskJobTwo: /opt/webapps/data-sync/merchant_sale.kjb

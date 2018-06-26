@@ -61,7 +61,7 @@ public class KettleTaskJob {
      * @throws Exception
      */
     @Scheduled(cron = "0 0 18 ? * SAT")
-//    @Scheduled(cron = "0 00 10 * * ?")
+//    @Scheduled(cron = "0 00 22 * * ?")
     public void runTaskTransTwo() throws Exception {
         LOGGER.info("kettle定时任务[{}]运行开始", this.taskTransTwo);
         String transFileName = this.taskTransTwo;
